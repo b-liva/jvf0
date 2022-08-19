@@ -18,10 +18,10 @@ import {computed} from "vue";
 
 export default {
   setup(){
-    {result} = useQuery(getContinents);
-    const countries = computed(() => result.value?.countries ?? [])
-    {result, loading} = useQuery(getContinents);
-    const continents = computed(() => result.value?.continents ?? [])
+    const continentsResult = useQuery(getContinents);
+    const continents = computed(() => continentsResult.result.value?.continents ?? [])
+    const countriesResult = useQuery(getCountries);
+    const countries = computed(() => countriesResult.result.value?.countries ?? [])
     return {
       countries,
       continents
