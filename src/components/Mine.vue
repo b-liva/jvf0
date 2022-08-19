@@ -3,26 +3,30 @@
     <p>{{ msg }}</p>
     <div>
       <ul>
-        <li v-for="cn in continents" :key="cn.name">{{cn.name}}</li>
+        <div v-if="continentsLoading" style="background-color: #2c3e50; color: white">loading</div>
+        <li v-for="cn in continents" :key="cn.name">{{ cn.name }}</li>
         *********************************************************
-        <li v-for="country in countries" :key="country.name">{{country.name}}</li>
+        <div v-if="countriesLoading" style="background-color: #2c3e50; color: white">loading</div>
+        <li v-for="country in countries" :key="country.name">{{ country.name }}</li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-import { useQuery } from '@vue/apollo-composable'
+import {useQuery} from '@vue/apollo-composable'
 import {getCountries, getContinents} from "../graphql/query/country.graphql";
 import {computed} from "vue";
 
 export default {
-  setup(){
-    const continentsResult = useQuery(getContinents);
-    const continents = computed(() => continentsResult.result.value?.continents ?? [])
-    const countriesResult = useQuery(getCountries);
-    const countries = computed(() => countriesResult.result.value?.countries ?? [])
+  setup() {
+    const {result: continentsResult, error: continentsError, loading: continentsLoading} = useQuery(getContinents);
+    const continents = computed(() => continentsResult.value?.continents ?? [])
+    const {result: countriesResult, error: countriesError, loading: countriesLoading} = useQuery(getCountries);
+    const countries = computed(() => countriesResult.value?.countries ?? [])
     return {
+      continentsLoading,
+      countriesLoading,
       countries,
       continents
     }
