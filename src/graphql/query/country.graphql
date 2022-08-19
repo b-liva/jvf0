@@ -3,3 +3,8 @@ query getCountries{
     name
   }
 }
+query getContinents{
+  continents{
+    name
+  }
+}
