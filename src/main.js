@@ -2,7 +2,7 @@ import { createApp, provide, h } from 'vue'
 import App from './App.vue'
 import {ApolloClient, createHttpLink, InMemoryCache} from '@apollo/client/core'
 import './assets/main.css'
-import { DefaultApolloClient } from '@vue/apollo-composable'
+import { DefaultApolloClient, provideApolloClient } from '@vue/apollo-composable'
 // HTTP connection to the API
 const httpLink = createHttpLink({
     // You should use an absolute URL here
@@ -17,7 +17,7 @@ const apolloClient = new ApolloClient({
     link: httpLink,
     cache,
 });
-
+provideApolloClient(apolloClient)
 const app = createApp({
   setup () {
     provide(DefaultApolloClient, apolloClient)
