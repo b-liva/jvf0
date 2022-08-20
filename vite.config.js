@@ -18,5 +18,19 @@ export default defineConfig({
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
+    },
+    build: {
+        lib: {
+            entry: './src/components/web-comp.js',
+            formats: ['es', 'cjs'],
+            name: "vue-web-comp",
+            fileName: format => (format === "es" ? "index.js" : "index.cjs.js")
+        },
+        sourcemap: true,
+        target: 'esnext',
+        minify: false
+    },
+    define: {
+        'process.env': {}
     }
 })
