@@ -1,7 +1,6 @@
 import { createApp, provide, h } from 'vue'
 import App from './App.vue'
 import {ApolloClient, createHttpLink, InMemoryCache} from '@apollo/client/core'
-import { createApolloProvider } from '@vue/apollo-option'
 import './assets/main.css'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 // HTTP connection to the API
