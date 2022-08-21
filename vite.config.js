@@ -20,6 +20,9 @@ export default defineConfig({
         }
     },
     build: {
+        outDir: "../static/src/jvf/dist/",
+        manifest: true,
+        emptyOutDir: true,
         lib: {
             entry: './src/components/web-comp.js',
             formats: ['es', 'cjs'],
