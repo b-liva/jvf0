@@ -20,17 +20,12 @@ const apolloClient = new ApolloClient({
 })
 provideApolloClient((apolloClient));
 
-
-const MyWebElement = defineCustomElement(MyWebComp);
-const MineElement = defineCustomElement(Mine);
 const CustomerElement = defineCustomElement(Customer);
 
-export {MyWebElement, MineElement, CustomerElement}
+export {CustomerElement}
 
 //register
 export function register() {
-    customElements.define('myweb-element', MyWebElement);
-    customElements.define('mine-element', MineElement);
     customElements.define('customer-card', CustomerElement);
 }
 register();
