@@ -2,8 +2,8 @@ import {ApolloClient, createHttpLink, InMemoryCache} from "@apollo/client/core";
 import {provideApolloClient} from '@vue/apollo-composable'
 
 import {defineCustomElement} from 'vue'
-import MyWebComp from "./MyWebComp.ce.vue";
-import Mine from "./Mine.ce.vue";
+import Customer from "./customer/Customer.ce.vue";
+
 
 
 const httpLink = createHttpLink({
@@ -23,12 +23,14 @@ provideApolloClient((apolloClient));
 
 const MyWebElement = defineCustomElement(MyWebComp);
 const MineElement = defineCustomElement(Mine);
+const CustomerElement = defineCustomElement(Customer);
 
-export {MyWebElement, MineElement}
+export {MyWebElement, MineElement, CustomerElement}
 
 //register
 export function register() {
     customElements.define('myweb-element', MyWebElement);
     customElements.define('mine-element', MineElement);
+    customElements.define('customer-card', CustomerElement);
 }
 register();

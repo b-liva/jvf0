@@ -1,4 +1,5 @@
 import {fileURLToPath, URL} from 'node:url'
+const { resolve } = require('path');
 
 import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue';
@@ -6,6 +7,17 @@ import graphql from '@rollup/plugin-graphql';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    root: './src',
+    base: '/static/static/',
+    server: {
+        host: 'localhost',
+        port: 3000,
+        open: false,
+        watch: {
+            usePolling: true,
+            disableGlobbing: false
+        }
+    },
     plugins: [vue({
         template: {
             compilerOptions: {
@@ -17,10 +29,12 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
-        }
+        },
+        extensions: ['.js', '.json']
     },
     build: {
-        outDir: "../app/templates/frontend/static/frontend/src/jvf/dist/",
+        outDir: "../static/src/jvf/dist/",
+        assetsDir: '',
         manifest: true,
         emptyOutDir: true,
         lib: {
@@ -30,8 +44,16 @@ export default defineConfig({
             fileName: format => (format === "es" ? "index.js" : "index.cjs.js")
         },
         sourcemap: true,
-        target: 'esnext',
-        minify: false
+        target: 'es2015',
+        minify: false,
+        rollupOptions: {
+            output: {
+                chunkFileNames: undefined,
+            },
+            input: {
+                main: resolve('./src/main.js')
+            }
+        }
     },
     define: {
         'process.env': {}

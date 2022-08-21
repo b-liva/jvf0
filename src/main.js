@@ -1,7 +1,8 @@
+import {register} from './components/web-comp.js';
+import 'vite/modulepreload-polyfill';
 import { createApp, provide, h } from 'vue'
 import App from './App.vue'
 import {ApolloClient, createHttpLink, InMemoryCache} from '@apollo/client/core'
-import './assets/main.css'
 import { DefaultApolloClient, provideApolloClient } from '@vue/apollo-composable'
 // HTTP connection to the API
 const httpLink = createHttpLink({
