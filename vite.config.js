@@ -20,7 +20,7 @@ export default defineConfig({
         }
     },
     build: {
-        outDir: "../static/src/jvf/dist/",
+        outDir: "../app/templates/frontend/static/frontend/src/jvf/dist/",
         manifest: true,
         emptyOutDir: true,
         lib: {
